@@ -107,7 +107,7 @@ const CafeHero = () => {
         
         {/* Left Side: Typography as Art */}
         <motion.div 
-          className="lg:col-span-7 flex flex-col gap-12"
+          className="lg:col-span-7 flex flex-col gap-12 relative z-30"
           variants={containerVariants}
           initial="initial"
           animate="animate"
@@ -136,11 +136,11 @@ const CafeHero = () => {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex gap-6 mt-12">
-              <Button className="h-14 px-10 rounded-none bg-brass text-navy hover:bg-brass/90 transition-all duration-500 font-sans text-[10px] uppercase tracking-[0.3em] flex gap-3 group focus-visible:ring-1 focus-visible:ring-brass">
+              <Button className="h-14 px-10 rounded-none bg-brass text-navy hover:bg-brass/90 transition-all duration-500 font-sans text-[10px] uppercase tracking-[0.3em] flex gap-3 group focus-visible:ring-1 focus-visible:ring-brass shadow-[0_0_30px_rgba(196,154,95,0.15)] hover:shadow-[0_0_40px_rgba(196,154,95,0.3)]">
                 Discover Menu
                 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Button>
-              <Button variant="ghost" className="h-14 px-10 rounded-none border border-brass/20 text-vanilla font-sans text-[10px] uppercase tracking-[0.3em] hover:bg-brass/10 focus-visible:ring-1 focus-visible:ring-brass/40">
+              <Button variant="ghost" className="h-14 px-10 rounded-none border border-brass/20 text-vanilla font-sans text-[10px] uppercase tracking-[0.3em] hover:bg-brass/10 bg-navy/40 backdrop-blur-md focus-visible:ring-1 focus-visible:ring-brass/40 shadow-lg">
                 Our Story
               </Button>
             </motion.div>
@@ -193,11 +193,11 @@ const CafeHero = () => {
       </div>
 
       {/* Bottom Marquee (Decorative) */}
-      <div className="absolute bottom-12 left-0 w-full overflow-hidden whitespace-nowrap opacity-20 pointer-events-none select-none" aria-hidden="true">
-        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-brass/10">
+      <div className="absolute bottom-12 left-0 w-full overflow-hidden whitespace-nowrap opacity-40 pointer-events-none select-none z-0 drop-shadow-2xl" aria-hidden="true">
+        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-brass/30">
           Crafted Ritual &nbsp;•&nbsp; Pure Extraction &nbsp;•&nbsp; Architectural Aroma &nbsp;•&nbsp;
         </div>
-        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-brass/10">
+        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-brass/30">
           Crafted Ritual &nbsp;•&nbsp; Pure Extraction &nbsp;•&nbsp; Architectural Aroma &nbsp;•&nbsp;
         </div>
       </div>
