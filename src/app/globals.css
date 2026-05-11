@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-espresso: #1a1a1a;
+  --color-cream: #FAF9F6;
+  --color-sage: #4a5d4e;
+
+  --font-family-serif: var(--font-playfair), serif;
+  --font-family-sans: var(--font-montserrat), sans-serif;
+
+  --animate-marquee: marquee 20s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+:root {
+  --background: #FAF9F6;
+  --foreground: #1a1a1a;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-montserrat), sans-serif;
+}
