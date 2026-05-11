@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { MapPin } from 'lucide-react';
 
 const CafeHero = () => {
@@ -74,9 +75,21 @@ const CafeHero = () => {
   }, [isLoaded, images]);
 
   return (
-    <section className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-[#FAF9F6]">
+    <section className="relative min-h-screen grid grid-cols-1 md:grid-cols-2 bg-cream overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image 
+          src="/hero.webp" 
+          alt="Cafe Interior Background" 
+          fill
+          priority
+          className="object-cover opacity-10"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream/50 via-transparent to-cream/50" />
+      </div>
+
       {/* 2. Left Side (Content) */}
-      <div className="flex flex-col justify-center p-10 md:p-20 space-y-8">
+      <div className="relative z-10 flex flex-col justify-center p-10 md:p-20 space-y-8">
         <div className="space-y-4">
           <h1 className="text-5xl md:text-7xl font-serif text-espresso leading-tight">
             Your Morning Ritual, <br />
@@ -100,7 +113,7 @@ const CafeHero = () => {
       </div>
 
       {/* 3. Right Side (Canvas) */}
-      <div className="flex items-center justify-center bg-[#FAF9F6] p-10">
+      <div className="relative z-10 flex items-center justify-center p-10">
         <canvas 
           ref={canvasRef}
           width={800}
