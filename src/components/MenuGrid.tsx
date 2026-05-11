@@ -16,12 +16,17 @@ const menuItems = [
 const MenuGrid = () => {
   const [focusedId, setFocusedId] = useState<number | null>(null);
 
-  const handleCardClick = (id: number) => {
+  const handleCardClick = (e: React.MouseEvent, id: number) => {
+    e.stopPropagation();
     setFocusedId(focusedId === id ? null : id);
   };
 
   return (
-    <section id="menu" className="relative py-24 bg-cream overflow-hidden transition-colors duration-500">
+    <section 
+      id="menu" 
+      className="relative py-24 bg-cream overflow-hidden transition-colors duration-500"
+      onClick={() => setFocusedId(null)}
+    >
       {/* Botanical Background Decorations */}
       <div className="absolute top-0 right-0 w-96 opacity-30 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
         <Image src="/botanical-branch.webp" alt="Botanical Branch" width={500} height={500} className="w-full h-auto object-contain" />
@@ -32,13 +37,16 @@ const MenuGrid = () => {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex justify-between items-end mb-16">
-          <div>
+          <div onClick={(e) => e.stopPropagation()}>
             <h2 className="text-sm font-sans tracking-widest text-sage uppercase mb-4">Our Selection</h2>
             <h3 className="text-4xl md:text-5xl font-serif text-espresso">The Bestsellers</h3>
           </div>
           {focusedId && (
             <button 
-              onClick={() => setFocusedId(null)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setFocusedId(null);
+              }}
               className="text-sm font-sans font-medium text-espresso border-b border-espresso pb-1 hover:text-sage hover:border-sage transition-colors"
             >
               Clear Focus
@@ -55,7 +63,7 @@ const MenuGrid = () => {
               <div 
                 key={item.id} 
                 className={`${styles.menuCardContainer} ${styles.noselect} ${isFocused ? styles.focused : ''} ${isBlurred ? styles.blurred : ''} cursor-pointer`}
-                onClick={() => handleCardClick(item.id)}
+                onClick={(e) => handleCardClick(e, item.id)}
               >
                 <div className={styles.canvas}>
                   {/* 25 Trackers for 3D Hover */}
