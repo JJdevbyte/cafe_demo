@@ -1,95 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import { MapPin } from 'lucide-react';
 
 const CafeHero = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [images, setImages] = useState<HTMLImageElement[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Stop-Motion Engine Logic
-  useEffect(() => {
-    const loadedImages: HTMLImageElement[] = [];
-    let loadedCount = 0;
-    const totalFrames = 10;
-
-    // 4. The Canvas Preloader Logic (Zero-Padded Files)
-    for (let i = 1; i <= totalFrames; i++) {
-      const img = new Image();
-      const paddedIndex = i.toString().padStart(2, '0');
-      img.src = `/cafe-sequence/frame_${paddedIndex}.webp`;
-      
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === totalFrames) {
-          setImages(loadedImages);
-          setIsLoaded(true);
-        }
-      };
-      loadedImages[i - 1] = img;
-    }
-  }, []);
-
-  // 5. The Stop-Motion Engine Render Loop
-  useEffect(() => {
-    if (!isLoaded || images.length === 0 || !canvasRef.current) return;
-
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let frameIndex = 0;
-    let timeoutId: NodeJS.Timeout;
-
-    const renderLoop = () => {
-      // Clear and Draw
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const currentImg = images[frameIndex];
-      
-      // Maintain aspect ratio while drawing
-      const scale = Math.min(canvas.width / currentImg.width, canvas.height / currentImg.height);
-      const x = (canvas.width / 2) - (currentImg.width / 2) * scale;
-      const y = (canvas.height / 2) - (currentImg.height / 2) * scale;
-      ctx.drawImage(currentImg, x, y, currentImg.width * scale, currentImg.height * scale);
-
-      // Timing Logic
-      let delay = 400; // Standard frame hold
-      
-      if (frameIndex === 9) {
-        delay = 2000; // Reset delay (empty plate)
-        frameIndex = 0;
-      } else {
-        frameIndex++;
-      }
-
-      timeoutId = setTimeout(renderLoop, delay);
-    };
-
-    renderLoop();
-
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [isLoaded, images]);
-
   return (
-    <section className="relative min-h-screen grid grid-cols-1 md:grid-cols-2 bg-cream overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image 
-          src="/hero.webp" 
-          alt="Cafe Interior Background" 
-          fill
-          priority
-          className="object-cover opacity-10"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream/50 via-transparent to-cream/50" />
+    <section className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-[#FAF9F6] relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute top-0 left-0 w-64 opacity-20 pointer-events-none transform -translate-x-1/3 -translate-y-1/3 rotate-45">
+        <img src="/botanical-branch.webp" alt="" className="w-full h-auto" />
       </div>
 
-      {/* 2. Left Side (Content) */}
-      <div className="relative z-10 flex flex-col justify-center p-10 md:p-20 space-y-8">
+      {/* Left Side (Content) */}
+      <div className="flex flex-col justify-center p-10 md:p-20 space-y-8">
         <div className="space-y-4">
           <h1 className="text-5xl md:text-7xl font-serif text-espresso leading-tight">
             Your Morning Ritual, <br />
@@ -112,19 +35,9 @@ const CafeHero = () => {
         </div>
       </div>
 
-      {/* 3. Right Side (Canvas) */}
-      <div className="relative z-10 flex items-center justify-center p-10">
-        <canvas 
-          ref={canvasRef}
-          width={800}
-          height={800}
-          className="w-full max-w-lg mx-auto object-contain"
-        />
-        {!isLoaded && (
-          <div className="absolute font-sans text-sage animate-pulse">
-            Brewing perfection...
-          </div>
-        )}
+      {/* Right Side (Empty Centered Div) */}
+      <div className="flex items-center justify-center bg-[#FAF9F6] p-10">
+        {/* Placeholder for future asset */}
       </div>
     </section>
   );

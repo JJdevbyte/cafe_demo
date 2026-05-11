@@ -23,10 +23,10 @@ const MenuGrid = () => {
   return (
     <section id="menu" className="relative py-24 bg-cream overflow-hidden transition-colors duration-500">
       {/* Botanical Background Decorations */}
-      <div className="absolute top-0 right-0 w-96 opacity-10 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
+      <div className="absolute top-0 right-0 w-96 opacity-30 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
         <Image src="/botanical-branch.webp" alt="Botanical Branch" width={500} height={500} className="w-full h-auto object-contain" />
       </div>
-      <div className="absolute bottom-0 left-0 w-80 opacity-10 pointer-events-none transform -translate-x-1/4 translate-y-1/4">
+      <div className="absolute bottom-0 left-0 w-80 opacity-30 pointer-events-none transform -translate-x-1/4 translate-y-1/4">
         <Image src="/botanical-beans.webp" alt="Botanical Beans" width={400} height={400} className="w-full h-auto object-contain" />
       </div>
 

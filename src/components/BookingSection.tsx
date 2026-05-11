@@ -10,7 +10,7 @@ const BookingSection = () => {
           src="/cafe-bg.webp" 
           alt="Cafe Interior" 
           fill
-          className="object-cover opacity-30"
+          className="object-cover opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-espresso via-espresso/80 to-transparent" />
       </div>
