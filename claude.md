@@ -39,25 +39,25 @@
 - **framer-motion**: Expert-level motion orchestration.
 - **visual-emotion-engineer**: Aesthetic tuning for sensory engagement.
 
-## 4. Design Tokens (Current)
+## 4. Design Tokens (Moody Luxury)
 | Property | Value | Note |
 | :--- | :--- | :--- |
-| **Primary Color** | `#1a1a1a` | Espresso (Deep moody black) |
-| **Secondary Color** | `#FAF9F6` | Rich Cream (Warm organic base) |
-| **Accent Color** | `#4a5d4e` | Sage/Olive (Natural botanical) |
-| **Heading Serif** | `Cormorant Garamond` | High-contrast, elegant Serif |
-| **Utility Sans** | `Geist / Inter` | Geometric, clean UI typography |
-| **Grid Lines** | `rgba(26, 26, 26, 0.05)` | Subtle structural markers |
+| **Deepest Navy** | `#1A2331` | Primary background, shadows, and base layer |
+| **Rich Espresso** | `#3D2C22` | Cards, secondary containers, and dividers |
+| **Polished Brass** | `#C49A5F` | Accents, glow auras, icons, and CTA borders |
+| **Creamy Vanilla** | `#FDF9F3` | Primary typography and highly readable text |
+| **Dark Charcoal** | `#121212` | Technical detail bases and deepest anchor shadows |
 
 ## 5. Directory Structure & Assets
 - `src/components/`: Modular UI components.
     - `Navbar.tsx`: Minimalist floating navigation.
-    - `CafeHero.tsx`: Architectural hero section with mouse parallax and cinematic entry.
-    - `MenuGrid.tsx`: Bestsellers grid with shadcn Badges and 3D hover tracking.
-    - `BookingSection.tsx`: Table reservation system using shadcn form primitives.
+    - `CafeHero.tsx`: Architectural hero section featuring dynamic "Floating Brass Blob" lighting overlays.
+    - `MenuGrid.tsx`: Bestsellers grid featuring high-fidelity "witty-deer-12" 3D tracker tilt physics and brass glow auras.
+    - `BookingSection.tsx`: Table reservation system with rotating brass-to-vanilla gradient borders.
+    - `TastefulFooter.tsx`: Sophisticated asymmetrical footer with standardized vertical rhythm.
+- `src/app/globals.css`: Contains CSS-first design tokens and custom 3D utilities (`.perspective-1000`, `.canvas-grid`, `.tracker`).
 - `public/`: High-performance WebP assets.
     - `hero-cinematic.webp`: Single high-impact hero asset.
-    - `botanical-*.webp`: Fine-line coffee illustrations used as subtle background textures.
 
 ## 6. Strategic Constraints
 - **MINIMALISM IS KEY**: If a section feels crowded, simplify.
