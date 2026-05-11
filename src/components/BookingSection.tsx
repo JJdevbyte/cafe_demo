@@ -93,8 +93,44 @@ const BookingSection = () => {
                 </div>
 
                 <div className="md:col-span-2 pt-8">
-                  <Button className="w-full h-16 bg-brass text-navy hover:bg-brass/90 transition-all duration-500 rounded-none font-sans text-xs uppercase tracking-[0.4em] focus-visible:ring-1 focus-visible:ring-brass">
-                    Confirm Reservation
+                  <style jsx>{`
+                    .glow-button {
+                      position: relative;
+                      overflow: hidden;
+                      z-index: 1;
+                      background: #1A2331; /* navy base */
+                      transition: all 0.3s ease;
+                    }
+                    .glow-button::before {
+                      content: '';
+                      position: absolute;
+                      width: 150px;
+                      background-image: linear-gradient(180deg, #C49A5F, #FDF9F3);
+                      height: 300%;
+                      top: -100%;
+                      left: 25%;
+                      animation: rotate-glow 4s linear infinite;
+                      z-index: -2;
+                      transition: all 0.2s linear;
+                    }
+                    .glow-button::after {
+                      content: '';
+                      position: absolute;
+                      background: #1A2331;
+                      inset: 2px;
+                      z-index: -1;
+                      transition: all 0.3s ease;
+                    }
+                    .glow-button:hover::after {
+                      background: #3D2C22; /* espresso on hover */
+                    }
+                    @keyframes rotate-glow {
+                      from { transform: rotate(0deg); }
+                      to { transform: rotate(360deg); }
+                    }
+                  `}</style>
+                  <Button className="glow-button w-full h-16 text-vanilla hover:text-brass transition-all duration-500 rounded-none font-sans text-xs uppercase tracking-[0.4em] border-0">
+                    <span className="relative z-10">Confirm Reservation</span>
                   </Button>
                 </div>
               </form>

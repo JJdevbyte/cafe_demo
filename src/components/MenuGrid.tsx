@@ -158,41 +158,55 @@ const MenuGrid = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="group cursor-pointer h-full flex flex-col"
+                className="group cursor-pointer h-full"
               >
-                <div className="relative aspect-[4/5] overflow-hidden border border-brass/10 bg-espresso-rich mb-6 shadow-2xl">
-                  <Image 
-                    src={item.image} 
-                    fill 
-                    alt={item.name} 
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100" 
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority={item.id <= 3}
-                  />
-                  <div className="absolute inset-0 bg-navy/20 group-hover:bg-navy/0 transition-colors duration-500" />
-                  
-                  {/* Category Tag */}
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-navy/80 backdrop-blur-md px-3 py-1 font-sans text-[8px] uppercase tracking-[0.2em] text-brass border border-brass/20">
-                      {item.category}
-                    </div>
-                  </div>
-                </div>
+                {/* 3D Tracker Wrapper (Uiverse witty-deer-12) */}
+                <div className="relative aspect-[4/5] perspective-1000 mb-6 transition-transform duration-200 active:scale-[0.96] canvas-grid">
+                  {/* Trackers - Must be direct siblings of .menu-card for ~ selector */}
+                  {[...Array(25)].map((_, i) => (
+                    <div 
+                      key={i} 
+                      className={`tracker tr-${i + 1} z-50`}
+                    />
+                  ))}
 
-                <div className="flex justify-between items-start mt-auto">
-                  <div className="flex-1">
-                    <h3 className="font-serif text-2xl text-vanilla mb-1 group-hover:italic group-hover:text-brass transition-all text-pretty opacity-100 visible">
-                      {item.name}
-                    </h3>
-                    <p className="font-sans text-[11px] text-vanilla/50 leading-relaxed max-w-[240px] text-pretty opacity-100 visible">
-                      {item.description}
-                    </p>
-                  </div>
-                  <div className="flex flex-col items-end gap-2 ml-4">
-                    <span className="font-serif text-xl text-brass tabular-nums">{item.price}</span>
-                    <div className="w-8 h-8 rounded-full border border-brass/20 flex items-center justify-center group-hover:bg-brass group-hover:text-navy transition-all duration-500 text-brass" aria-hidden="true">
-                      <ArrowUpRight size={14} />
+                  <div className="menu-card absolute inset-0 overflow-hidden border border-brass/10 bg-espresso-rich shadow-2xl transition-all duration-500 ease-out preserve-3d group/card">
+                    {/* Background Glow Aura (Exact Snippet Logic) */}
+                    <div className="absolute inset-0 z-[-1] bg-gradient-to-tr from-brass via-espresso-rich to-navy blur-[3rem] opacity-0 group-hover/card:opacity-60 transition-opacity duration-300" />
+                    
+                    <Image 
+                      src={item.image} 
+                      fill 
+                      alt={item.name} 
+                      className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-80" 
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={item.id <= 3}
+                    />
+                    
+                    {/* Content Overlay - Revealed via Tracker/Group Hover */}
+                    <div className="absolute inset-0 p-8 flex flex-col justify-between z-10 translate-z-10 preserve-3d">
+                      <div className="flex justify-between items-start opacity-40 group-hover/card:opacity-100 transition-opacity duration-300">
+                        <div className="bg-navy/80 backdrop-blur-md px-3 py-1 font-sans text-[8px] uppercase tracking-[0.2em] text-brass border border-brass/20">
+                          {item.category}
+                        </div>
+                        <span className="font-serif text-2xl text-brass tabular-nums transform translate-z-20">{item.price}</span>
+                      </div>
+
+                      <div className="space-y-4 transform translate-z-30 transition-all duration-300 group-hover/card:translate-y-[-10px]">
+                        <h3 className="font-serif text-3xl text-vanilla leading-tight tracking-tight opacity-80 group-hover/card:opacity-100 transition-opacity duration-300">
+                          {item.name}
+                        </h3>
+                        <p className="font-sans text-[11px] text-vanilla/40 group-hover/card:text-vanilla/70 leading-relaxed max-w-[240px] tracking-wide uppercase transition-all duration-300">
+                          {item.description}
+                        </p>
+                        <div className="pt-4 flex items-center gap-2 text-brass opacity-0 group-hover/card:opacity-100 transition-all duration-500 translate-y-4 group-hover/card:translate-y-0">
+                          <span className="font-sans text-[8px] uppercase tracking-[0.4em]">View Ritual</span>
+                          <ArrowUpRight size={12} />
+                        </div>
+                      </div>
                     </div>
+
+                    <div className="absolute inset-0 bg-navy/50 group-hover/card:bg-navy/20 transition-colors duration-500" />
                   </div>
                 </div>
               </motion.div>

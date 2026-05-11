@@ -70,11 +70,29 @@ const CafeHero = () => {
       onMouseMove={handleMouseMove}
       aria-labelledby="hero-heading"
     >
-      {/* Cinematic Lighting Effects */}
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brass/5 rounded-full blur-[160px] opacity-30" />
-        <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-espresso-rich/20 rounded-full blur-[120px] opacity-40" />
+      {/* Cinematic Lighting & Floating Blobs (Uiverse stupid-mole-90) */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brass/10 rounded-full blur-[120px] animate-blob-bounce" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-espresso-rich/20 rounded-full blur-[100px] animate-blob-bounce-delayed" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(196,154,95,0.05),transparent_70%)]" />
       </div>
+
+      <style jsx global>{`
+        @keyframes blob-bounce {
+          0% { transform: translate(-20%, -20%) scale(1); }
+          25% { transform: translate(20%, -10%) scale(1.1); }
+          50% { transform: translate(10%, 20%) scale(0.9); }
+          75% { transform: translate(-10%, 10%) scale(1.05); }
+          100% { transform: translate(-20%, -20%) scale(1); }
+        }
+        .animate-blob-bounce {
+          animation: blob-bounce 25s infinite ease-in-out;
+        }
+        .animate-blob-bounce-delayed {
+          animation: blob-bounce 30s infinite ease-in-out reverse;
+          animation-delay: -5s;
+        }
+      `}</style>
 
       {/* Structural Grid Lines (Decorative) */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08]" aria-hidden="true">
