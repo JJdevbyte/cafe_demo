@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { cn } from "@/lib/utils";
 
 const MENU_ITEMS = [
   {
@@ -57,55 +57,108 @@ const MENU_ITEMS = [
   }
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+  },
+  exit: { 
+    opacity: 0, 
+    scale: 0.95,
+    transition: { duration: 0.4, ease: "easeInOut" }
+  }
+};
+
 const MenuGrid = () => {
   const [activeTab, setActiveTab] = useState("All");
+  const categories = ["All", "Coffee", "Pastry", "Specialty"];
 
-  const filteredItems = activeTab === "All" 
-    ? MENU_ITEMS 
-    : MENU_ITEMS.filter(item => item.category === activeTab);
+  const filteredItems = useMemo(() => {
+    return activeTab === "All" 
+      ? MENU_ITEMS 
+      : MENU_ITEMS.filter(item => item.category === activeTab);
+  }, [activeTab]);
 
   return (
     <section id="menu" className="py-32 bg-cream relative overflow-hidden">
       {/* Background Grid Line */}
-      <div className="absolute right-[15%] top-0 w-[1px] h-full bg-espresso/5 pointer-events-none" />
+      <div className="absolute right-[15%] top-0 w-[1px] h-full bg-espresso/5 pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-20">
           <div className="max-w-xl">
-            <span className="font-sans text-[10px] uppercase tracking-[0.5em] text-espresso/40 block mb-4">
+            <motion.span 
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="font-sans text-[10px] uppercase tracking-[0.5em] text-espresso/40 block mb-4"
+            >
               Curated Selection
-            </span>
-            <h2 className="font-serif text-6xl text-espresso tracking-tight">
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-serif text-6xl text-espresso tracking-tight text-balance"
+            >
               The <span className="font-light italic">Minimalist</span> Menu
-            </h2>
+            </motion.h2>
           </div>
 
-          <Tabs defaultValue="All" className="w-full lg:w-auto" onValueChange={setActiveTab}>
-            <TabsList className="bg-transparent h-12 p-0 gap-8">
-              {["All", "Coffee", "Pastry", "Specialty"].map((cat) => (
-                <TabsTrigger 
-                  key={cat}
-                  value={cat} 
-                  className="bg-transparent px-0 rounded-none border-b-2 border-transparent data-[state=active]:border-espresso data-[state=active]:bg-transparent font-sans text-[10px] uppercase tracking-[0.3em] text-espresso/40 data-[state=active]:text-espresso transition-all h-full"
-                >
-                  {cat}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
+          <nav className="flex gap-8 relative border-b border-espresso/10 pb-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveTab(cat)}
+                className={cn(
+                  "relative font-sans text-[10px] uppercase tracking-[0.3em] transition-colors py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-espresso/20",
+                  activeTab === cat ? "text-espresso" : "text-espresso/40 hover:text-espresso/60"
+                )}
+                aria-pressed={activeTab === cat}
+              >
+                <span className="relative z-10">{cat}</span>
+                {activeTab === cat && (
+                  <motion.div 
+                    layoutId="menu-underline"
+                    className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-espresso"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+              </button>
+            ))}
+          </nav>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-          <AnimatePresence mode="popLayout">
+        <motion.div 
+          layout="position"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 min-h-[600px]"
+        >
+          <AnimatePresence mode="wait">
             {filteredItems.map((item) => (
               <motion.div
                 key={item.id}
                 layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-                className="group cursor-pointer"
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="group cursor-pointer h-full flex flex-col"
               >
                 <div className="relative aspect-[4/5] overflow-hidden border border-espresso/5 bg-[#f5f5f5] mb-6">
                   <Image 
@@ -113,6 +166,8 @@ const MenuGrid = () => {
                     fill 
                     alt={item.name} 
                     className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={item.id <= 3}
                   />
                   <div className="absolute inset-0 bg-espresso/0 group-hover:bg-espresso/5 transition-colors duration-500" />
                   
@@ -124,18 +179,18 @@ const MenuGrid = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="font-serif text-2xl text-espresso mb-1 group-hover:italic transition-all">
+                <div className="flex justify-between items-start mt-auto">
+                  <div className="flex-1">
+                    <h3 className="font-serif text-2xl text-espresso mb-1 group-hover:italic transition-all text-pretty opacity-100 visible">
                       {item.name}
                     </h3>
-                    <p className="font-sans text-[11px] text-espresso/50 leading-relaxed max-w-[200px]">
+                    <p className="font-sans text-[11px] text-espresso/50 leading-relaxed max-w-[240px] text-pretty opacity-100 visible">
                       {item.description}
                     </p>
                   </div>
-                  <div className="flex flex-col items-end gap-2">
-                    <span className="font-serif text-xl text-espresso">{item.price}</span>
-                    <div className="w-8 h-8 rounded-full border border-espresso/10 flex items-center justify-center group-hover:bg-espresso group-hover:text-cream transition-all duration-500">
+                  <div className="flex flex-col items-end gap-2 ml-4">
+                    <span className="font-serif text-xl text-espresso tabular-nums">{item.price}</span>
+                    <div className="w-8 h-8 rounded-full border border-espresso/10 flex items-center justify-center group-hover:bg-espresso group-hover:text-cream transition-all duration-500" aria-hidden="true">
                       <ArrowUpRight size={14} />
                     </div>
                   </div>
@@ -143,7 +198,7 @@ const MenuGrid = () => {
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
