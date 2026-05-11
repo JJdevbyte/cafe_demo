@@ -95,7 +95,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute top-full left-0 w-full bg-navy border-b border-brass/10 p-12 flex flex-col items-center gap-8 md:hidden"
+            className="absolute top-full left-0 w-full bg-navy border-b border-brass/10 px-8 py-16 flex flex-col items-center gap-8 md:hidden"
           >
             {navLinks.map((link, i) => (
               <motion.a 

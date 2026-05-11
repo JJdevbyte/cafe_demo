@@ -29,6 +29,8 @@
   .translate-z-10 { transform: translateZ(10px); }
   .translate-z-20 { transform: translateZ(20px); }
   .translate-z-30 { transform: translateZ(30px); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
 /* witty-deer-12 Tracker Rotations */
@@ -78,6 +80,16 @@
 .tr-23:hover ~ .menu-card { transform: rotateX(-20deg) rotateY(0deg); }
 .tr-24:hover ~ .menu-card { transform: rotateX(-20deg) rotateY(5deg); }
 .tr-25:hover ~ .menu-card { transform: rotateX(-20deg) rotateY(10deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tracker:hover ~ .menu-card {
+    transform: none !important;
+    transition: none !important;
+  }
+  .menu-card {
+    transition: none !important;
+  }
+}
 
 body {
   font-family: var(--font-sans), sans-serif;

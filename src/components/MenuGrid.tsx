@@ -6,56 +6,7 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
-const MENU_ITEMS = [
-  {
-    id: 1,
-    name: "Obsidian Cold Brew",
-    price: "$8",
-    category: "Coffee",
-    image: "/menu-cold-brew.webp",
-    description: "12-hour extraction with notes of dark chocolate and smoke."
-  },
-  {
-    id: 2,
-    name: "Velvet Flat White",
-    price: "$6",
-    category: "Coffee",
-    image: "/menu-flat-white.webp",
-    description: "Micro-foam silk over high-altitude espresso."
-  },
-  {
-    id: 3,
-    name: "Ceremonial Matcha",
-    price: "$9",
-    category: "Specialty",
-    image: "/menu-matcha.webp",
-    description: "Whisked stone-ground Uji matcha with oat milk."
-  },
-  {
-    id: 4,
-    name: "Artisanal Croissant",
-    price: "$7",
-    category: "Pastry",
-    image: "/menu-croissant.webp",
-    description: "82% butter fat, 48-hour lamination."
-  },
-  {
-    id: 5,
-    name: "Wild Berry Tart",
-    price: "$12",
-    category: "Pastry",
-    image: "/menu-tart.webp",
-    description: "Sable crust with organic mountain berries."
-  },
-  {
-    id: 6,
-    name: "Botanical Tonic",
-    price: "$8",
-    category: "Specialty",
-    image: "/menu-tonic.webp",
-    description: "Cold brew infused with rosemary and citrus zest."
-  }
-];
+import { MENU_ITEMS } from "@/data/menu";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -83,7 +34,7 @@ const itemVariants: Variants = {
 
 const MenuGrid = () => {
   const [activeTab, setActiveTab] = useState("All");
-  const categories = ["All", "Coffee", "Pastry", "Specialty"];
+  const categories = useMemo(() => ["All", ...Array.from(new Set(MENU_ITEMS.map(item => item.category)))], []);
 
   const filteredItems = useMemo(() => {
     return activeTab === "All" 
@@ -117,13 +68,13 @@ const MenuGrid = () => {
             </motion.h2>
           </div>
 
-          <nav className="flex gap-8 relative border-b border-brass/20 pb-2">
+          <nav className="flex gap-8 relative border-b border-brass/20 pb-2 overflow-x-auto no-scrollbar scroll-smooth whitespace-nowrap px-1">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
                 className={cn(
-                  "relative font-sans text-[10px] uppercase tracking-[0.3em] transition-colors py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brass/20",
+                  "relative font-sans text-[10px] uppercase tracking-[0.3em] transition-colors py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brass/20 flex-shrink-0",
                   activeTab === cat ? "text-brass" : "text-vanilla/40 hover:text-brass/60"
                 )}
                 aria-pressed={activeTab === cat}
@@ -166,11 +117,14 @@ const MenuGrid = () => {
                   {[...Array(25)].map((_, i) => (
                     <div 
                       key={i} 
-                      className={`tracker tr-${i + 1} z-50`}
+                      className={`tracker tr-${i + 1} z-50 hidden md:block`}
                     />
                   ))}
 
-                  <div className="menu-card absolute inset-0 overflow-hidden border border-brass/10 bg-espresso-rich shadow-2xl transition-all duration-500 ease-out preserve-3d group/card">
+                  <motion.div 
+                    whileTap={{ scale: 0.97 }}
+                    className="menu-card absolute inset-0 overflow-hidden border border-brass/10 bg-espresso-rich shadow-2xl transition-all duration-500 ease-out preserve-3d group/card"
+                  >
                     {/* Background Glow Aura (Exact Snippet Logic) */}
                     <div className="absolute inset-0 z-[-1] bg-gradient-to-tr from-brass via-espresso-rich to-navy blur-[3rem] opacity-0 group-hover/card:opacity-60 transition-opacity duration-300" />
                     
@@ -207,7 +161,7 @@ const MenuGrid = () => {
                     </div>
 
                     <div className="absolute inset-0 bg-navy/50 group-hover/card:bg-navy/20 transition-colors duration-500" />
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}

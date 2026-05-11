@@ -193,11 +193,11 @@ const CafeHero = () => {
       </div>
 
       {/* Bottom Marquee (Decorative) */}
-      <div className="absolute bottom-12 left-0 w-full overflow-hidden whitespace-nowrap opacity-40 pointer-events-none select-none z-0 drop-shadow-2xl" aria-hidden="true">
-        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-brass/30">
+      <div className="absolute bottom-8 md:bottom-12 left-0 w-full overflow-hidden whitespace-nowrap opacity-40 pointer-events-none select-none z-0 drop-shadow-2xl" aria-hidden="true">
+        <div className="inline-block animate-marquee font-serif text-[15vw] md:text-[12vw] uppercase tracking-[0.2em] text-brass/30">
           Crafted Ritual &nbsp;•&nbsp; Pure Extraction &nbsp;•&nbsp; Architectural Aroma &nbsp;•&nbsp;
         </div>
-        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-brass/30">
+        <div className="inline-block animate-marquee font-serif text-[15vw] md:text-[12vw] uppercase tracking-[0.2em] text-brass/30">
           Crafted Ritual &nbsp;•&nbsp; Pure Extraction &nbsp;•&nbsp; Architectural Aroma &nbsp;•&nbsp;
         </div>
       </div>

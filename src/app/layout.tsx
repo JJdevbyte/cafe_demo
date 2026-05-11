@@ -17,6 +17,18 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "CafeHero | Architectural Minimalism",
   description: "Experience coffee as architecture. Minimalist aesthetic, luxury organic quality.",
+  openGraph: {
+    title: "CafeHero | Architectural Minimalism",
+    description: "Experience coffee as architecture. Minimalist aesthetic, luxury organic quality.",
+    type: "website",
+    url: "https://cafe-hero.demo",
+    siteName: "CafeHero",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CafeHero | Architectural Minimalism",
+    description: "Experience coffee as architecture. Minimalist aesthetic, luxury organic quality.",
+  }
 };
 
 export default function RootLayout({
