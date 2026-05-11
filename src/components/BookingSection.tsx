@@ -1,8 +1,9 @@
+"use client";
+
 import React from 'react';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -10,89 +11,90 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 const BookingSection = () => {
   return (
-    <section id="book" className="relative py-24 bg-espresso text-cream overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="/cafe-bg.webp" 
-          alt="Cafe Interior" 
-          fill
-          className="object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-espresso via-espresso/80 to-transparent" />
+    <section id="book" className="py-32 bg-espresso relative overflow-hidden">
+      {/* Decorative Structural Lines */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-5">
+        <div className="absolute left-[20%] top-0 w-[1px] h-full bg-cream" />
+        <div className="absolute left-[80%] top-0 w-[1px] h-full bg-cream" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* Text Content */}
-        <div className="space-y-6">
-          <h2 className="text-sm font-sans tracking-widest text-sage uppercase">Reservations</h2>
-          <h3 className="text-4xl md:text-5xl font-serif leading-tight">
-            Reserve Your <br />
-            <span className="italic text-sage/90">Experience</span>
-          </h3>
-          <p className="text-lg font-sans text-cream/70 max-w-md">
-            Whether it's a quiet morning coffee or a weekend brunch with friends, 
-            secure your table and let us take care of the rest.
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+          
+          {/* Content */}
+          <div className="lg:col-span-5">
+            <span className="font-sans text-[10px] uppercase tracking-[0.5em] text-cream/40 block mb-6">
+              Reservations
+            </span>
+            <h2 className="font-serif text-7xl text-cream tracking-tight mb-8">
+              Secure Your <span className="font-light italic">Sanctuary.</span>
+            </h2>
+            <p className="font-sans text-sm text-cream/60 leading-relaxed tracking-wide max-w-sm">
+              We offer a limited number of tables to ensure an intimate and architectural atmosphere for every guest.
+            </p>
+          </div>
 
-        {/* Booking Form */}
-        <div className="bg-cream/5 backdrop-blur-md border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl">
-          <form className="space-y-6 flex flex-col">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="date" className="text-cream/80">Date</Label>
-                <Input 
-                  id="date"
-                  type="date" 
-                  className="bg-transparent border-white/20 text-cream focus:border-sage transition-colors h-11"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="time" className="text-cream/80">Time</Label>
-                <Input 
-                  id="time"
-                  type="time" 
-                  className="bg-transparent border-white/20 text-cream focus:border-sage transition-colors h-11"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-cream/80">Guests</Label>
-              <Select>
-                <SelectTrigger className="bg-transparent border-white/20 text-cream focus:border-sage h-11">
-                  <SelectValue placeholder="Select number of guests" />
-                </SelectTrigger>
-                <SelectContent className="bg-espresso text-cream border-white/10">
-                  <SelectItem value="1">1 Person</SelectItem>
-                  <SelectItem value="2">2 People</SelectItem>
-                  <SelectItem value="3">3 People</SelectItem>
-                  <SelectItem value="4">4+ People</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-cream/80">Name</Label>
-              <Input 
-                id="name"
-                type="text" 
-                placeholder="John Doe"
-                className="bg-transparent border-white/20 text-cream focus:border-sage transition-colors h-11 placeholder:text-cream/30"
-              />
-            </div>
-
-            <Button 
-              type="button"
-              className="mt-4 py-6 bg-sage text-cream font-sans font-medium tracking-wider uppercase rounded-full hover:bg-sage/80 transition-all shadow-lg w-full md:w-auto self-start text-base px-10"
+          {/* Form */}
+          <div className="lg:col-span-7">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
+              className="bg-cream/5 backdrop-blur-sm border border-cream/10 p-12 lg:p-16"
             >
-              Confirm Reservation
-            </Button>
-          </form>
+              <form className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                <div className="space-y-3">
+                  <Label htmlFor="name" className="font-sans text-[10px] uppercase tracking-[0.3em] text-cream/40">Full Name</Label>
+                  <Input id="name" placeholder="John Doe" className="h-14 bg-transparent border-0 border-b border-cream/20 rounded-none text-cream placeholder:text-cream/20 focus-visible:ring-0 focus-visible:border-cream transition-colors font-serif text-xl" />
+                </div>
+
+                <div className="space-y-3">
+                  <Label htmlFor="date" className="font-sans text-[10px] uppercase tracking-[0.3em] text-cream/40">Date</Label>
+                  <Input id="date" type="date" className="h-14 bg-transparent border-0 border-b border-cream/20 rounded-none text-cream placeholder:text-cream/20 focus-visible:ring-0 focus-visible:border-cream transition-colors font-serif text-xl" />
+                </div>
+
+                <div className="space-y-3">
+                  <Label className="font-sans text-[10px] uppercase tracking-[0.3em] text-cream/40">Guests</Label>
+                  <Select>
+                    <SelectTrigger className="h-14 bg-transparent border-0 border-b border-cream/20 rounded-none text-cream focus:ring-0 focus:border-cream transition-colors font-serif text-xl">
+                      <SelectValue placeholder="Select amount" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-espresso border-cream/10 text-cream rounded-none">
+                      <SelectItem value="1">1 Person</SelectItem>
+                      <SelectItem value="2">2 People</SelectItem>
+                      <SelectItem value="4">4 People</SelectItem>
+                      <SelectItem value="6+">6+ People</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-3">
+                  <Label className="font-sans text-[10px] uppercase tracking-[0.3em] text-cream/40">Time</Label>
+                  <Select>
+                    <SelectTrigger className="h-14 bg-transparent border-0 border-b border-cream/20 rounded-none text-cream focus:ring-0 focus:border-cream transition-colors font-serif text-xl">
+                      <SelectValue placeholder="Select time" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-espresso border-cream/10 text-cream rounded-none">
+                      <SelectItem value="morning">Morning (8:00 - 11:00)</SelectItem>
+                      <SelectItem value="afternoon">Afternoon (12:00 - 15:00)</SelectItem>
+                      <SelectItem value="evening">Evening (16:00 - 20:00)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="md:col-span-2 pt-8">
+                  <Button className="w-full h-16 bg-cream text-espresso hover:bg-cream/90 transition-all duration-500 rounded-none font-sans text-xs uppercase tracking-[0.4em]">
+                    Confirm Reservation
+                  </Button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

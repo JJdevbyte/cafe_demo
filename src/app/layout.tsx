@@ -1,23 +1,21 @@
-import type { Metadata } from "next";
-import { Playfair_Display, Montserrat, Geist } from "next/font/google";
+import { Cormorant_Garamond, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const playfair = Playfair_Display({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-sans",
 });
 
-const montserrat = Montserrat({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
-  title: "CafeHero | Luxury Organic Cafe",
-  description: "Experience the perfect blend of aroma and ambiance.",
+  title: "CafeHero | Architectural Minimalism",
+  description: "Experience coffee as architecture. Minimalist aesthetic, luxury organic quality.",
 };
 
 export default function RootLayout({
@@ -26,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body className={`${playfair.variable} ${montserrat.variable} antialiased`}>
+    <html lang="en" className={cn("font-sans", geist.variable, cormorant.variable)}>
+      <body className="antialiased bg-cream selection:bg-espresso selection:text-cream">
         {children}
       </body>
     </html>
