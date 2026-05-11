@@ -66,17 +66,23 @@ const CafeHero = () => {
 
   return (
     <section 
-      className="relative min-h-screen bg-cream overflow-hidden flex flex-col justify-center select-none"
+      className="relative min-h-screen bg-navy overflow-hidden flex flex-col justify-center select-none"
       onMouseMove={handleMouseMove}
       aria-labelledby="hero-heading"
     >
+      {/* Cinematic Lighting Effects */}
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brass/5 rounded-full blur-[160px] opacity-30" />
+        <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-espresso-rich/20 rounded-full blur-[120px] opacity-40" />
+      </div>
+
       {/* Structural Grid Lines (Decorative) */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]" aria-hidden="true">
-        <div className="absolute left-[10%] top-0 w-[1px] h-full bg-espresso" />
-        <div className="absolute left-[50%] top-0 w-[1px] h-full bg-espresso" />
-        <div className="absolute left-[90%] top-0 w-[1px] h-full bg-espresso" />
-        <div className="absolute top-[20%] left-0 w-full h-[1px] bg-espresso" />
-        <div className="absolute top-[80%] left-0 w-full h-[1px] bg-espresso" />
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08]" aria-hidden="true">
+        <div className="absolute left-[10%] top-0 w-[1px] h-full bg-brass/20" />
+        <div className="absolute left-[50%] top-0 w-[1px] h-full bg-brass/20" />
+        <div className="absolute left-[90%] top-0 w-[1px] h-full bg-brass/20" />
+        <div className="absolute top-[20%] left-0 w-full h-[1px] bg-brass/20" />
+        <div className="absolute top-[80%] left-0 w-full h-[1px] bg-brass/20" />
       </div>
 
       <div className="max-w-7xl mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
@@ -90,7 +96,7 @@ const CafeHero = () => {
         >
           <div>
             <motion.div variants={itemVariants} className="overflow-hidden">
-              <span className="font-sans text-[10px] uppercase tracking-[0.5em] text-espresso/40 block mb-4">
+              <span className="font-sans text-[10px] uppercase tracking-[0.5em] text-brass/60 block mb-4">
                 Est. 2024 — Artisanal Ritual
               </span>
             </motion.div>
@@ -98,25 +104,25 @@ const CafeHero = () => {
             <motion.h1 
               id="hero-heading"
               variants={itemVariants}
-              className="font-serif text-[clamp(4rem,10vw,8rem)] leading-[0.9] text-espresso tracking-tight"
+              className="font-serif text-[clamp(4rem,10vw,8rem)] leading-[0.9] text-vanilla tracking-tight"
             >
               COFFEE<br />
-              <span className="font-light italic ml-[0.5em]">AS ART.</span>
+              <span className="font-light italic ml-[0.5em] text-brass">AS ART.</span>
             </motion.h1>
 
             <motion.p 
               variants={itemVariants}
-              className="max-w-md font-sans text-sm leading-relaxed text-espresso/60 mt-8 tracking-wide text-pretty"
+              className="max-w-md font-sans text-sm leading-relaxed text-vanilla/70 mt-8 tracking-wide text-pretty"
             >
               We treat every brew as an architectural project. Minimalist in form, maximum in flavor. Experience the curated ritual of the perfect cup.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex gap-6 mt-12">
-              <Button className="h-14 px-10 rounded-none bg-espresso text-cream hover:bg-espresso/90 transition-all duration-500 font-sans text-[10px] uppercase tracking-[0.3em] flex gap-3 group focus-visible:ring-1 focus-visible:ring-espresso">
+              <Button className="h-14 px-10 rounded-none bg-brass text-navy hover:bg-brass/90 transition-all duration-500 font-sans text-[10px] uppercase tracking-[0.3em] flex gap-3 group focus-visible:ring-1 focus-visible:ring-brass">
                 Discover Menu
                 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Button>
-              <Button variant="ghost" className="h-14 px-10 rounded-none border border-espresso/10 font-sans text-[10px] uppercase tracking-[0.3em] hover:bg-espresso/5 focus-visible:ring-1 focus-visible:ring-espresso/20">
+              <Button variant="ghost" className="h-14 px-10 rounded-none border border-brass/20 text-vanilla font-sans text-[10px] uppercase tracking-[0.3em] hover:bg-brass/10 focus-visible:ring-1 focus-visible:ring-brass/40">
                 Our Story
               </Button>
             </motion.div>
@@ -138,7 +144,7 @@ const CafeHero = () => {
             animate="animate"
             className="relative z-10"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden border border-espresso/5 shadow-2xl group">
+            <div className="relative aspect-[4/5] w-full overflow-hidden border border-brass/20 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.8)] group bg-charcoal">
               <Image 
                 src="/hero-cinematic.png" 
                 fill 
@@ -148,32 +154,32 @@ const CafeHero = () => {
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
               {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-espresso/20 to-transparent opacity-40 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent opacity-60 pointer-events-none" />
             </div>
 
             {/* Floating Detail */}
             <motion.div 
-              className="absolute -bottom-8 -left-8 bg-cream p-6 border border-espresso/5 shadow-xl hidden md:block"
+              className="absolute -bottom-8 -left-8 bg-espresso-rich p-6 border border-brass/30 shadow-2xl hidden md:block"
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
             >
-              <div className="font-serif text-xl italic text-espresso">The Obsidian Brew</div>
-              <div className="font-sans text-[8px] uppercase tracking-[0.2em] text-espresso/40 mt-1">Limited Batch — Seasonal</div>
+              <div className="font-serif text-xl italic text-vanilla">The Obsidian Brew</div>
+              <div className="font-sans text-[8px] uppercase tracking-[0.2em] text-brass/60 mt-1">Limited Batch — Seasonal</div>
             </motion.div>
           </motion.div>
 
           {/* Background Decorative Line */}
-          <div className="absolute -top-20 -right-20 w-64 h-64 border border-espresso/5 rounded-full pointer-events-none" aria-hidden="true" />
+          <div className="absolute -top-20 -right-20 w-64 h-64 border border-brass/10 rounded-full pointer-events-none" aria-hidden="true" />
         </div>
       </div>
 
       {/* Bottom Marquee (Decorative) */}
-      <div className="absolute bottom-12 left-0 w-full overflow-hidden whitespace-nowrap opacity-10 pointer-events-none select-none" aria-hidden="true">
-        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-espresso">
+      <div className="absolute bottom-12 left-0 w-full overflow-hidden whitespace-nowrap opacity-20 pointer-events-none select-none" aria-hidden="true">
+        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-brass/10">
           Crafted Ritual &nbsp;•&nbsp; Pure Extraction &nbsp;•&nbsp; Architectural Aroma &nbsp;•&nbsp;
         </div>
-        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-espresso">
+        <div className="inline-block animate-marquee font-serif text-[12vw] uppercase tracking-[0.2em] text-brass/10">
           Crafted Ritual &nbsp;•&nbsp; Pure Extraction &nbsp;•&nbsp; Architectural Aroma &nbsp;•&nbsp;
         </div>
       </div>

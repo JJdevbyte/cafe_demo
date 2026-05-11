@@ -92,9 +92,9 @@ const MenuGrid = () => {
   }, [activeTab]);
 
   return (
-    <section id="menu" className="py-32 bg-cream relative overflow-hidden">
+    <section id="menu" className="py-32 bg-navy relative overflow-hidden">
       {/* Background Grid Line */}
-      <div className="absolute right-[15%] top-0 w-[1px] h-full bg-espresso/5 pointer-events-none" aria-hidden="true" />
+      <div className="absolute right-[15%] top-0 w-[1px] h-full bg-brass/10 pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-20">
@@ -103,7 +103,7 @@ const MenuGrid = () => {
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="font-sans text-[10px] uppercase tracking-[0.5em] text-espresso/40 block mb-4"
+              className="font-sans text-[10px] uppercase tracking-[0.5em] text-brass/60 block mb-4"
             >
               Curated Selection
             </motion.span>
@@ -111,20 +111,20 @@ const MenuGrid = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="font-serif text-6xl text-espresso tracking-tight text-balance"
+              className="font-serif text-6xl text-vanilla tracking-tight text-balance"
             >
-              The <span className="font-light italic">Minimalist</span> Menu
+              The <span className="font-light italic text-brass">Minimalist</span> Menu
             </motion.h2>
           </div>
 
-          <nav className="flex gap-8 relative border-b border-espresso/10 pb-2">
+          <nav className="flex gap-8 relative border-b border-brass/20 pb-2">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
                 className={cn(
-                  "relative font-sans text-[10px] uppercase tracking-[0.3em] transition-colors py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-espresso/20",
-                  activeTab === cat ? "text-espresso" : "text-espresso/40 hover:text-espresso/60"
+                  "relative font-sans text-[10px] uppercase tracking-[0.3em] transition-colors py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brass/20",
+                  activeTab === cat ? "text-brass" : "text-vanilla/40 hover:text-brass/60"
                 )}
                 aria-pressed={activeTab === cat}
               >
@@ -132,7 +132,7 @@ const MenuGrid = () => {
                 {activeTab === cat && (
                   <motion.div 
                     layoutId="menu-underline"
-                    className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-espresso"
+                    className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-brass"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -160,20 +160,20 @@ const MenuGrid = () => {
                 exit="exit"
                 className="group cursor-pointer h-full flex flex-col"
               >
-                <div className="relative aspect-[4/5] overflow-hidden border border-espresso/5 bg-[#f5f5f5] mb-6">
+                <div className="relative aspect-[4/5] overflow-hidden border border-brass/10 bg-espresso-rich mb-6 shadow-2xl">
                   <Image 
                     src={item.image} 
                     fill 
                     alt={item.name} 
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100" 
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority={item.id <= 3}
                   />
-                  <div className="absolute inset-0 bg-espresso/0 group-hover:bg-espresso/5 transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-navy/20 group-hover:bg-navy/0 transition-colors duration-500" />
                   
                   {/* Category Tag */}
                   <div className="absolute top-4 left-4">
-                    <div className="bg-cream/80 backdrop-blur-md px-3 py-1 font-sans text-[8px] uppercase tracking-[0.2em] text-espresso border border-espresso/5">
+                    <div className="bg-navy/80 backdrop-blur-md px-3 py-1 font-sans text-[8px] uppercase tracking-[0.2em] text-brass border border-brass/20">
                       {item.category}
                     </div>
                   </div>
@@ -181,16 +181,16 @@ const MenuGrid = () => {
 
                 <div className="flex justify-between items-start mt-auto">
                   <div className="flex-1">
-                    <h3 className="font-serif text-2xl text-espresso mb-1 group-hover:italic transition-all text-pretty opacity-100 visible">
+                    <h3 className="font-serif text-2xl text-vanilla mb-1 group-hover:italic group-hover:text-brass transition-all text-pretty opacity-100 visible">
                       {item.name}
                     </h3>
-                    <p className="font-sans text-[11px] text-espresso/50 leading-relaxed max-w-[240px] text-pretty opacity-100 visible">
+                    <p className="font-sans text-[11px] text-vanilla/50 leading-relaxed max-w-[240px] text-pretty opacity-100 visible">
                       {item.description}
                     </p>
                   </div>
                   <div className="flex flex-col items-end gap-2 ml-4">
-                    <span className="font-serif text-xl text-espresso tabular-nums">{item.price}</span>
-                    <div className="w-8 h-8 rounded-full border border-espresso/10 flex items-center justify-center group-hover:bg-espresso group-hover:text-cream transition-all duration-500" aria-hidden="true">
+                    <span className="font-serif text-xl text-brass tabular-nums">{item.price}</span>
+                    <div className="w-8 h-8 rounded-full border border-brass/20 flex items-center justify-center group-hover:bg-brass group-hover:text-navy transition-all duration-500 text-brass" aria-hidden="true">
                       <ArrowUpRight size={14} />
                     </div>
                   </div>

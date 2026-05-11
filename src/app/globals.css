@@ -8,9 +8,11 @@
   --font-serif: var(--font-cormorant), serif;
   --font-sans: var(--font-geist), sans-serif;
 
-  --color-cream: #faf9f6;
-  --color-espresso: #1c1917;
-  --color-sage: #4a5d4e;
+  --color-navy: #1A2331;
+  --color-espresso-rich: #3D2C22;
+  --color-vanilla: #FDF9F3;
+  --color-brass: #C49A5F;
+  --color-charcoal: #121212;
 
   --animate-marquee: marquee 30s linear infinite;
 
