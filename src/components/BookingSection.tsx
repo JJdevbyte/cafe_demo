@@ -1,5 +1,15 @@
 import React from 'react';
 import Image from 'next/image';
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const BookingSection = () => {
   return (
@@ -34,46 +44,54 @@ const BookingSection = () => {
           <form className="space-y-6 flex flex-col">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-sans text-cream/80">Date</label>
-                <input 
+                <Label htmlFor="date" className="text-cream/80">Date</Label>
+                <Input 
+                  id="date"
                   type="date" 
-                  className="w-full bg-transparent border-b border-white/20 pb-2 text-cream focus:outline-none focus:border-sage transition-colors placeholder:text-cream/30"
+                  className="bg-transparent border-white/20 text-cream focus:border-sage transition-colors h-11"
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-sans text-cream/80">Time</label>
-                <input 
+                <Label htmlFor="time" className="text-cream/80">Time</Label>
+                <Input 
+                  id="time"
                   type="time" 
-                  className="w-full bg-transparent border-b border-white/20 pb-2 text-cream focus:outline-none focus:border-sage transition-colors placeholder:text-cream/30"
+                  className="bg-transparent border-white/20 text-cream focus:border-sage transition-colors h-11"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-sans text-cream/80">Guests</label>
-              <select className="w-full bg-transparent border-b border-white/20 pb-2 text-cream focus:outline-none focus:border-sage transition-colors appearance-none">
-                <option value="1" className="bg-espresso text-cream">1 Person</option>
-                <option value="2" className="bg-espresso text-cream">2 People</option>
-                <option value="3" className="bg-espresso text-cream">3 People</option>
-                <option value="4" className="bg-espresso text-cream">4+ People</option>
-              </select>
+              <Label className="text-cream/80">Guests</Label>
+              <Select>
+                <SelectTrigger className="bg-transparent border-white/20 text-cream focus:border-sage h-11">
+                  <SelectValue placeholder="Select number of guests" />
+                </SelectTrigger>
+                <SelectContent className="bg-espresso text-cream border-white/10">
+                  <SelectItem value="1">1 Person</SelectItem>
+                  <SelectItem value="2">2 People</SelectItem>
+                  <SelectItem value="3">3 People</SelectItem>
+                  <SelectItem value="4">4+ People</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-sans text-cream/80">Name</label>
-              <input 
+              <Label htmlFor="name" className="text-cream/80">Name</Label>
+              <Input 
+                id="name"
                 type="text" 
                 placeholder="John Doe"
-                className="w-full bg-transparent border-b border-white/20 pb-2 text-cream focus:outline-none focus:border-sage transition-colors placeholder:text-cream/30"
+                className="bg-transparent border-white/20 text-cream focus:border-sage transition-colors h-11 placeholder:text-cream/30"
               />
             </div>
 
-            <button 
+            <Button 
               type="button"
-              className="mt-4 px-8 py-4 bg-sage text-cream font-sans font-medium tracking-wider uppercase rounded-full hover:bg-sage/80 transition-all shadow-lg w-full md:w-auto self-start"
+              className="mt-4 py-6 bg-sage text-cream font-sans font-medium tracking-wider uppercase rounded-full hover:bg-sage/80 transition-all shadow-lg w-full md:w-auto self-start text-base px-10"
             >
               Confirm Reservation
-            </button>
+            </Button>
           </form>
         </div>
       </div>

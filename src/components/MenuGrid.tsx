@@ -13,6 +13,9 @@ const menuItems = [
   { id: 6, name: 'Chocolate Tart', price: '$7.50', desc: 'Dark ganache with sea salt and gold leaf.', category: 'Bakery', img: '/menu-tart.webp' }
 ];
 
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
 const MenuGrid = () => {
   const [focusedId, setFocusedId] = useState<number | null>(null);
 
@@ -42,15 +45,16 @@ const MenuGrid = () => {
             <h3 className="text-4xl md:text-5xl font-serif text-espresso">The Bestsellers</h3>
           </div>
           {focusedId && (
-            <button 
+            <Button 
+              variant="ghost"
               onClick={(e) => {
                 e.stopPropagation();
                 setFocusedId(null);
               }}
-              className="text-sm font-sans font-medium text-espresso border-b border-espresso pb-1 hover:text-sage hover:border-sage transition-colors"
+              className="text-sm font-sans font-medium text-espresso hover:text-sage transition-colors"
             >
               Clear Focus
-            </button>
+            </Button>
           )}
         </div>
 
@@ -81,9 +85,9 @@ const MenuGrid = () => {
                     <div className={styles.cardOverlay} />
                     
                     <div className={styles.cardInfo}>
-                      <span className="text-xs font-sans tracking-widest uppercase text-cream/80 mb-2 block">
+                      <Badge variant="secondary" className="bg-cream/20 text-cream border-none mb-3 uppercase tracking-widest text-[10px]">
                         {item.category}
-                      </span>
+                      </Badge>
                       <h4 className="text-2xl font-serif text-cream mb-1">{item.name}</h4>
                       <p className="text-sm font-sans text-cream/70 mb-4">{item.desc}</p>
                       <div className="text-lg font-sans font-medium text-cream">{item.price}</div>
