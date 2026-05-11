@@ -1,11 +1,35 @@
 {
   "version": 1,
   "skills": {
+    "design-lab": {
+      "source": "0xdesign/design-plugin",
+      "sourceType": "github",
+      "skillPath": "design-and-refine/skills/design-lab/SKILL.md",
+      "computedHash": "8879d318fcedccbae872a06b3d9a4ed3c5e75340a96d9c6baf765a4b19593c25"
+    },
+    "framer-motion-animator": {
+      "source": "patricio0312rev/skills",
+      "sourceType": "github",
+      "skillPath": "frontend/framer-motion-animator/SKILL.md",
+      "computedHash": "22a8401fab0cdf32d5c153b98aba5e95435a479810896879535dc7ac3710efbe"
+    },
+    "gsap-framer-scroll-animation": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-framer-scroll-animation/SKILL.md",
+      "computedHash": "e6a4caf23b818ffc5185d51339e941ca783944b6693da877fc1206693b2dff66"
+    },
     "shadcn": {
       "source": "shadcn/ui",
       "sourceType": "github",
       "skillPath": "skills/shadcn/SKILL.md",
       "computedHash": "f0fdd03f4755cbb3b57e20fe6fd4a97c00d34e6780187b6559316986e8d848db"
+    },
+    "typography": {
+      "source": "petekp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/typography/SKILL.md",
+      "computedHash": "3292d34592e7224b7fe1e47c4aa7bc6ff3ca7fdcc62d6c493e1a23c903779879"
     },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",
