@@ -7,6 +7,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
 import { MENU_ITEMS } from "@/data/menu";
+import { transitions } from "@/lib/transitions";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -23,7 +24,7 @@ const itemVariants: Variants = {
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+    transition: { ...transitions.cinematic, duration: 0.8 } 
   },
   exit: { 
     opacity: 0, 

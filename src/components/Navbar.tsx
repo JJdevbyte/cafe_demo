@@ -46,13 +46,13 @@ const Navbar = () => {
               href={`#${link.toLowerCase()}`} 
               onMouseEnter={() => setHoveredLink(link)}
               onMouseLeave={() => setHoveredLink(null)}
-              className="relative px-6 py-2 font-sans text-[10px] uppercase tracking-[0.3em] font-medium text-vanilla/60 hover:text-brass transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brass/20"
+              className="relative px-6 py-2 font-sans text-[10px] uppercase tracking-[0.3em] font-medium text-vanilla/60 hover:text-vanilla transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brass/20"
             >
               <span className="relative z-10">{link}</span>
               {hoveredLink === link && (
                 <motion.span 
                   layoutId="nav-hover"
-                  className="absolute inset-0 bg-brass/10 rounded-sm"
+                  className="absolute inset-0 bg-vanilla/5 rounded-sm"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -71,7 +71,7 @@ const Navbar = () => {
         >
           <Button 
             variant="ghost" 
-            className="px-8 h-10 border border-brass/20 rounded-none font-sans text-[10px] uppercase tracking-[0.3em] text-vanilla hover:bg-brass hover:text-navy transition-all duration-500 focus-visible:ring-1 focus-visible:ring-brass"
+            className="px-8 h-10 border border-brass/20 rounded-none font-sans text-[10px] uppercase tracking-[0.3em] text-vanilla hover:bg-vanilla/5 hover:text-vanilla hover:border-brass/40 transition-all duration-500 focus-visible:ring-1 focus-visible:ring-brass"
           >
             Reserve
           </Button>
@@ -83,7 +83,7 @@ const Navbar = () => {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
-          {menuOpen ? <X size={20} className="text-brass" /> : <Menu size={20} />}
+          {menuOpen ? <X size={20} className="text-vanilla" /> : <Menu size={20} />}
         </button>
       </div>
 
@@ -95,7 +95,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute top-full left-0 w-full bg-navy border-b border-brass/10 px-8 py-16 flex flex-col items-center gap-8 md:hidden"
+            className="absolute top-full left-0 w-full bg-navy/95 backdrop-blur-xl border-b border-brass/10 px-8 py-16 flex flex-col items-center gap-8 md:hidden"
           >
             {navLinks.map((link, i) => (
               <motion.a 
@@ -105,7 +105,7 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="font-serif text-4xl text-vanilla hover:text-brass hover:italic transition-all"
+                className="font-serif text-4xl text-vanilla hover:text-vanilla/80 hover:italic transition-all"
               >
                 {link}
               </motion.a>
@@ -118,7 +118,7 @@ const Navbar = () => {
             >
               <Button 
                 onClick={() => setMenuOpen(false)} 
-                className="mt-8 w-full h-14 bg-brass text-navy rounded-none font-sans text-xs uppercase tracking-[0.3em] hover:bg-brass/90"
+                className="mt-8 w-full h-14 bg-transparent border border-brass/30 text-vanilla rounded-none font-sans text-xs uppercase tracking-[0.3em] hover:bg-vanilla/5 hover:border-brass/60 transition-all duration-500"
               >
                 Reserve Table
               </Button>

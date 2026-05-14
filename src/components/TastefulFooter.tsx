@@ -12,17 +12,7 @@ const TastefulFooter = () => {
       {/* Structural Grid Line */}
       <div className="absolute left-[50%] top-0 w-[1px] h-full bg-brass/5 pointer-events-none" aria-hidden="true" />
 
-      <style jsx global>{`
-        @keyframes social-bounce {
-          40% { transform: scale(1.4); }
-          60% { transform: scale(0.8); }
-          80% { transform: scale(1.2); }
-          100% { transform: scale(1); }
-        }
-        .social-bounce:hover {
-          animation: social-bounce 0.4s linear;
-        }
-      `}</style>
+
 
       <div className="max-w-7xl mx-auto px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-32">
@@ -76,14 +66,14 @@ const TastefulFooter = () => {
             <div className="space-y-8 col-span-2 md:col-span-1">
               <h4 className="font-sans text-[10px] uppercase tracking-[0.3em] font-bold text-brass opacity-80 border-b border-brass/10 pb-2 w-fit">Social</h4>
               <div className="flex gap-4 pt-1">
-                <a href="#" className="group/social w-10 h-10 flex items-center justify-center rounded-full border border-brass/10 hover:bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] transition-all duration-300 social-bounce" aria-label="Instagram">
-                  <Instagram size={18} className="text-vanilla/40 group-hover/social:text-white transition-all duration-300 cursor-pointer" />
+                <a href="#" className="group/social w-10 h-10 flex items-center justify-center rounded-full border border-brass/10 hover:border-brass/40 hover:bg-brass/5 transition-all duration-500" aria-label="Instagram">
+                  <Instagram size={18} className="text-vanilla/40 group-hover/social:text-vanilla/90 transition-all duration-500 cursor-pointer" />
                 </a>
-                <a href="#" className="group/social w-10 h-10 flex items-center justify-center rounded-full border border-brass/10 hover:bg-[#00ccff] transition-all duration-300 social-bounce" aria-label="Twitter">
-                  <Twitter size={18} className="text-vanilla/40 group-hover/social:text-white transition-all duration-300 cursor-pointer" />
+                <a href="#" className="group/social w-10 h-10 flex items-center justify-center rounded-full border border-brass/10 hover:border-brass/40 hover:bg-brass/5 transition-all duration-500" aria-label="Twitter">
+                  <Twitter size={18} className="text-vanilla/40 group-hover/social:text-vanilla/90 transition-all duration-500 cursor-pointer" />
                 </a>
-                <a href="#" className="group/social w-10 h-10 flex items-center justify-center rounded-full border border-brass/10 hover:bg-[#5865f2] transition-all duration-300 social-bounce" aria-label="Facebook">
-                  <Facebook size={18} className="text-vanilla/40 group-hover/social:text-white transition-all duration-300 cursor-pointer" />
+                <a href="#" className="group/social w-10 h-10 flex items-center justify-center rounded-full border border-brass/10 hover:border-brass/40 hover:bg-brass/5 transition-all duration-500" aria-label="Facebook">
+                  <Facebook size={18} className="text-vanilla/40 group-hover/social:text-vanilla/90 transition-all duration-500 cursor-pointer" />
                 </a>
               </div>
             </div>

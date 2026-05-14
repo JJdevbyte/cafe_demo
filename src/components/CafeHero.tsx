@@ -44,10 +44,7 @@ const CafeHero = () => {
     animate: { 
       opacity: 1, 
       y: 0, 
-      transition: { 
-        duration: 1.2, 
-        ease: [0.22, 1, 0.36, 1] 
-      } 
+      transition: transitions.cinematic
     },
   };
 
@@ -57,8 +54,8 @@ const CafeHero = () => {
       opacity: 1, 
       scale: 1, 
       transition: { 
-        duration: 1.8, 
-        ease: [0.22, 1, 0.36, 1], 
+        ...transitions.cinematic,
+        duration: 1.8,
         delay: 0.4 
       } 
     },
@@ -136,11 +133,11 @@ const CafeHero = () => {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex gap-6 mt-12">
-              <Button className="h-14 px-10 rounded-none bg-brass text-navy hover:bg-brass/90 transition-all duration-500 font-sans text-[10px] uppercase tracking-[0.3em] flex gap-3 group focus-visible:ring-1 focus-visible:ring-brass shadow-[0_0_30px_rgba(196,154,95,0.15)] hover:shadow-[0_0_40px_rgba(196,154,95,0.3)]">
+              <Button className="h-14 px-10 rounded-none bg-brass text-navy hover:bg-brass/90 transition-all duration-500 font-sans text-[10px] uppercase tracking-[0.3em] flex gap-3 group focus-visible:ring-1 focus-visible:ring-brass shadow-[0_4px_20px_rgba(196,154,95,0.15)] hover:shadow-[0_8px_30px_rgba(196,154,95,0.25)]">
                 Discover Menu
                 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Button>
-              <Button variant="ghost" className="h-14 px-10 rounded-none border border-brass/20 text-vanilla font-sans text-[10px] uppercase tracking-[0.3em] hover:bg-brass/10 bg-navy/40 backdrop-blur-md focus-visible:ring-1 focus-visible:ring-brass/40 shadow-lg">
+              <Button variant="ghost" className="h-14 px-10 rounded-none border border-brass/10 text-vanilla font-sans text-[10px] uppercase tracking-[0.3em] hover:bg-brass/5 hover:border-brass/30 bg-navy/40 backdrop-blur-md focus-visible:ring-1 focus-visible:ring-brass/40 shadow-lg transition-all duration-500">
                 Our Story
               </Button>
             </motion.div>
