@@ -1,6 +1,9 @@
 import CafeHero from "@/components/CafeHero";
 import Navbar from "@/components/Navbar";
+import StorySection from "@/components/StorySection";
 import MenuGrid from "@/components/MenuGrid";
+import ShopSection from "@/components/ShopSection";
+import LocationsSection from "@/components/LocationsSection";
 import BookingSection from "@/components/BookingSection";
 
 import TastefulFooter from "@/components/TastefulFooter";
@@ -10,6 +13,7 @@ export default function Home() {
     <main className="min-h-screen bg-cream selection:bg-espresso selection:text-cream">
       <Navbar />
       <CafeHero />
+      <StorySection />
       
       {/* Structural Marquee */}
       <div className="bg-espresso text-cream/80 py-8 overflow-hidden whitespace-nowrap border-y border-white/5 relative z-10">
@@ -26,6 +30,8 @@ export default function Home() {
       </div>
 
       <MenuGrid />
+      <ShopSection />
+      <LocationsSection />
       <BookingSection />
       <TastefulFooter />
     </main>
