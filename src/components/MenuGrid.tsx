@@ -132,7 +132,7 @@ const MenuGrid = () => {
                       src={item.image} 
                       fill 
                       alt={item.name} 
-                      className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-80" 
+                      className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100" 
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority={item.id <= 3}
                     />
@@ -160,7 +160,7 @@ const MenuGrid = () => {
                       </div>
                     </div>
 
-                    <div className="absolute inset-0 bg-navy/50 group-hover/card:bg-navy/20 transition-colors duration-500" />
+                    <div className="absolute inset-0 bg-navy/20 group-hover/card:bg-navy/0 transition-colors duration-500" />
                   </motion.div>
                 </div>
               </motion.div>
