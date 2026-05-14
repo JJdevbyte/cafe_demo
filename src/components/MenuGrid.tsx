@@ -139,18 +139,20 @@ const MenuGrid = () => {
                     
                     {/* Content Overlay - Revealed via Tracker/Group Hover */}
                     <div className="absolute inset-0 p-8 flex flex-col justify-between z-10 translate-z-10 preserve-3d">
-                      <div className="flex justify-between items-start opacity-40 group-hover/card:opacity-100 transition-opacity duration-300">
-                        <div className="bg-navy/80 backdrop-blur-md px-3 py-1 font-sans text-[8px] uppercase tracking-[0.2em] text-brass border border-brass/20">
+                      {/* Top Bar: Category & Price */}
+                      <div className="flex justify-between items-start opacity-60 group-hover/card:opacity-100 transition-opacity duration-300">
+                        <div className="bg-navy/90 backdrop-blur-md px-3 py-1 font-sans text-[8px] uppercase tracking-[0.2em] text-brass border border-brass/30 shadow-lg">
                           {item.category}
                         </div>
-                        <span className="font-serif text-2xl text-brass tabular-nums transform translate-z-20">{item.price}</span>
+                        <span className="font-serif text-2xl text-brass tabular-nums transform translate-z-20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">{item.price}</span>
                       </div>
 
-                      <div className="space-y-4 transform translate-z-30 transition-all duration-300 group-hover/card:translate-y-[-10px]">
-                        <h3 className="font-serif text-3xl text-vanilla leading-tight tracking-tight opacity-80 group-hover/card:opacity-100 transition-opacity duration-300">
+                      {/* Bottom Content: Name & Description */}
+                      <div className="relative z-10 space-y-4 transform translate-z-30 transition-all duration-300 group-hover/card:translate-y-[-10px]">
+                        <h3 className="font-serif text-3xl text-vanilla leading-tight tracking-tight opacity-90 group-hover/card:opacity-100 transition-opacity duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                           {item.name}
                         </h3>
-                        <p className="font-sans text-[11px] text-vanilla/40 group-hover/card:text-vanilla/70 leading-relaxed max-w-[240px] tracking-wide uppercase transition-all duration-300">
+                        <p className="font-sans text-[11px] text-vanilla/60 group-hover/card:text-vanilla/90 leading-relaxed max-w-[240px] tracking-wide uppercase transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
                           {item.description}
                         </p>
                         <div className="pt-4 flex items-center gap-2 text-brass opacity-0 group-hover/card:opacity-100 transition-all duration-500 translate-y-4 group-hover/card:translate-y-0">
@@ -160,7 +162,11 @@ const MenuGrid = () => {
                       </div>
                     </div>
 
-                    <div className="absolute inset-0 bg-navy/20 group-hover/card:bg-navy/0 transition-colors duration-500" />
+                    {/* Readability Gradients */}
+                    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent opacity-80 group-hover/card:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-navy/60 to-transparent opacity-40 group-hover/card:opacity-60 transition-opacity duration-500" />
+                    
+                    <div className="absolute inset-0 border-[0.5px] border-brass/10 group-hover/card:border-brass/30 transition-colors duration-500 pointer-events-none" />
                   </motion.div>
                 </div>
               </motion.div>
