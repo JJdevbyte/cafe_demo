@@ -58,11 +58,16 @@
 - `src/components/`: Modular UI components.
     - `Navbar.tsx`: Minimalist floating navigation.
     - `CafeHero.tsx`: Architectural hero section featuring dynamic "Floating Brass Blob" lighting overlays.
+    - `StorySection.tsx`: Cinematic scroll-expansion storytelling experience.
     - `MenuGrid.tsx`: Bestsellers grid featuring high-fidelity 3D tracker tilt physics and brass glow auras.
+    - `LocationsSection.tsx`: Controller for interactive 3D map rendering and location state.
     - `BookingSection.tsx`: Table reservation system with rotating brass-to-vanilla gradient borders.
     - `TastefulFooter.tsx`: Sophisticated asymmetrical footer with standardized vertical rhythm.
+- `src/components/ui/`: Complex interactive primitives.
+    - `scroll-expansion-hero.tsx`: Scroll-sensitive media expansion component with Framer Motion `useScroll`.
+    - `expand-map.tsx`: Interactive 3D location map with mouse-tracking tilt and click-to-expand functionality.
 - `src/app/`: Core application logic.
-    - `page.tsx`: Main landing page featuring the "Structural Marquee" transition element.
+    - `page.tsx`: Main landing page integrating all sections into a seamless single-page experience.
     - `globals.css`: Contains CSS-first design tokens and custom 3D utilities (`.perspective-1000`, `.canvas-grid`, `.tracker`).
 - `public/`: High-performance WebP assets.
     - `hero-cinematic.webp`: Single high-impact hero asset.
@@ -73,6 +78,7 @@
 - **DATA-DRIVEN**: Abstract content into `src/data` to maintain a clean, production-grade codebase.
 - **WHITESPACE IS A CHOICE**: Do not fill every gap; let the photography and typography breathe.
 - **NO PLACEHOLDERS**: Generate high-fidelity assets using `generate_image`.
+- **NATIVE SCROLLING**: Prefer native scroll tracking (e.g., Framer Motion `useScroll` with `position: sticky`) over aggressive JavaScript event hijacking for scroll-linked animations.
 
 ---
-*Last Verified: 2026-05-12*
+*Last Verified: 2026-05-14*
