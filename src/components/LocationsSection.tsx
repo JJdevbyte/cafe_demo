@@ -1,50 +1,38 @@
 "use client";
 
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { transitions } from '@/lib/transitions';
+import { LocationMap } from '@/components/ui/expand-map';
+import { cn } from '@/lib/utils';
 
 const locations = [
   {
     city: "New York",
     address: "142 West 24th St.",
     neighborhood: "Chelsea",
-    hours: "7AM — 7PM"
+    hours: "7AM — 7PM",
+    coordinates: "40.7443° N, 73.9939° W"
   },
   {
     city: "Tokyo",
     address: "3-4-1 Minami-Aoyama",
     neighborhood: "Minato City",
-    hours: "8AM — 8PM"
+    hours: "8AM — 8PM",
+    coordinates: "35.6664° N, 139.7157° E"
   },
   {
     city: "London",
     address: "24 Shoreditch High St.",
     neighborhood: "Hackney",
-    hours: "7:30AM — 6PM"
+    hours: "7:30AM — 6PM",
+    coordinates: "51.5246° N, 0.0772° W"
   }
 ];
 
 const LocationsSection = () => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: transitions.cinematic
-    }
-  };
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeLocation = locations[activeIndex];
 
   return (
     <section id="locations" className="py-32 bg-charcoal text-vanilla relative overflow-hidden">
@@ -55,7 +43,7 @@ const LocationsSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-8 relative z-10">
-        <div className="mb-24 text-center">
+        <div className="mb-20 text-center">
           <motion.span 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -76,27 +64,73 @@ const LocationsSection = () => {
           </motion.h2>
         </div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {locations.map((loc) => (
-            <motion.div key={loc.city} variants={itemVariants} className="group cursor-default">
-              <div className="border-t border-brass/20 pt-8 transition-colors duration-500 group-hover:border-brass/60">
-                <h3 className="font-serif text-4xl mb-2 group-hover:text-brass transition-colors duration-500">{loc.city}</h3>
-                <p className="font-sans text-xs uppercase tracking-[0.2em] text-vanilla/40 mb-8">{loc.neighborhood}</p>
-                
-                <div className="space-y-2 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
-                  <p className="font-sans text-sm tracking-wide text-vanilla/80">{loc.address}</p>
-                  <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-brass/80">{loc.hours}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
+          
+          {/* Location Selector */}
+          <div className="w-full lg:w-1/3 flex flex-col gap-8">
+            {locations.map((loc, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <button
+                  key={loc.city}
+                  onClick={() => setActiveIndex(index)}
+                  className={cn(
+                    "text-left group transition-all duration-500 relative py-4 border-b",
+                    isActive ? "border-brass" : "border-brass/20 hover:border-brass/50"
+                  )}
+                >
+                  <h3 className={cn(
+                    "font-serif text-4xl mb-2 transition-colors duration-500",
+                    isActive ? "text-brass" : "text-vanilla group-hover:text-brass/80"
+                  )}>
+                    {loc.city}
+                  </h3>
+                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-vanilla/40">
+                    {loc.neighborhood}
+                  </p>
+                  
+                  {/* Subtle active indicator arrow */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-location"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 text-brass"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -10 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Interactive Map Display */}
+          <div className="w-full lg:w-2/3 flex justify-center lg:justify-end">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeLocation.city}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={transitions.cinematic}
+                className="w-full max-w-[500px] flex justify-center"
+              >
+                <LocationMap 
+                  location={`${activeLocation.address}, ${activeLocation.city}`}
+                  coordinates={activeLocation.coordinates}
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+        </div>
       </div>
     </section>
   );
